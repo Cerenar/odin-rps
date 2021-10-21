@@ -51,8 +51,8 @@ Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ compute
     }
   }
   else {
-		computerWinTotal++;
     if (computerWeaponChoice === "rock") {
+			computerWinTotal++;
       alert (`You lose! Lmao you got rocked, kid.
 Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
 			return computerWinTotal;
