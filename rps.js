@@ -11,61 +11,61 @@ Steps:		Function receives player and computer weapon choices as input.
 					the current total wins for player and computer.
 					Return updated win totals as output.
 */
-function playRound (playerWeaponChoice, computerWeaponChoice) {
-  if (playerWeaponChoice === "rock") {
+const container = document.querySelector("#container");
+const scoreboard = document.createElement("scoreboard");
+const resultMessage = document.createElement("div");
+resultMessage.classList.add("resultMessage");
+
+function playRound () {
+	// Computer picks rock, paper, or scissors RANDOMLY
+	let weaponsChest = ["rock", "paper", "scissors"];
+	let computerWeaponChoice = weaponsChest[Math.floor(Math.random()*3)];
+
+  if (this.id === "rock") {
     if (computerWeaponChoice === "rock") {
-      alert (`That was a tie! You both picked rock. Find a nice canyon to spend some time together in.
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+			
 			return;
     }
     else if (computerWeaponChoice === "paper") {
 			computerWinTotal++;
-      alert (`You lose! Rocks are actually pretty claustrophobic...
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return computerWinTotal;
     }
     else {
 			playerWinTotal++;
-      alert (`You win! Smash those scissors to bits!
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return playerWinTotal;
     }
   }
-  else if (playerWeaponChoice === "paper") {
+  else if (this.id === "paper") {
     if (computerWeaponChoice === "rock") {
 			playerWinTotal++;
-      alert (`You win! Smother the life out of that pebble!
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return playerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
-      alert (`That was a tie! You both picked paper. Find a nice manila folder to spend some time with your new friend in.
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return;
     }
     else {
 			computerWinTotal++;
-      alert (`You lose! I'm afraid you're getting cut to ribbons...
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return computerWinTotal;
     }
   }
   else {
     if (computerWeaponChoice === "rock") {
 			computerWinTotal++;
-      alert (`You lose! Lmao you got rocked, kid.
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return computerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
 			playerWinTotal++;
-      alert(`You win! Just think of all the pretty paper snowflakes you can make.
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return playerWinTotal;
     }
     else {
-      alert (`That was a tie! You both picked scissors. Uhhhhh this might get a bit NSFW.
-Results as of round ${ round }. Current score: ${ playerWinTotal } to ${ computerWinTotal }`);
+      
 			return;
     }
   }
@@ -83,7 +83,7 @@ Steps:		Prompt the user for their weapon of choice. R, P, S?
 					If their weapon choice isn't legal, ask the user to try again.
 					If it is legal, output their choice as a string.
 */
-function getPlayerWeapon() {
+/*function getPlayerWeapon() {
   let playerWeaponChoice = "";
 	let keepGoing = true;
 	while (keepGoing) {
@@ -100,25 +100,17 @@ function getPlayerWeapon() {
 			keepGoing = false;
 		}
   }
-	return playerWeaponChoice;
-}
+	console.log(this.id);
+}*/
 
 let playerWinTotal = 0;
 let computerWinTotal = 0;
 let round = 1;
 
-// Play five rounds
-for (round; round <= 5; round++) {
-	// Player picks rock, paper, or scissors
-	let playerWeaponChoice = getPlayerWeapon();
-	// Computer picks rock, paper, or scissors RANDOMLY
-	let weaponsChest = ["rock", "paper", "scissors"];
-	let computerWeaponChoice = weaponsChest[Math.floor(Math.random()*3)];
-	// After figuring out the result, you and your friend play a few more times
-	playRound(playerWeaponChoice, computerWeaponChoice);
-}
+const buttons = document.querySelectorAll("button");
+buttons.forEach (button => button.addEventListener("click", playRound));
 
-if (playerWinTotal > computerWinTotal) {
+/*if (playerWinTotal > 4) {
 	alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU WIN! Minstrels will write songs of praise to honor your glorious conquest.`)
 } 
 else if (playerWinTotal === computerWinTotal) {
@@ -126,4 +118,4 @@ else if (playerWinTotal === computerWinTotal) {
 } 
 else {
 	alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU LOSE! YOU WERE SUPPOSED TO BE THE CHOSEN ONE!`)
-}
+}*/
