@@ -11,11 +11,6 @@ Steps:		Function receives player and computer weapon choices as input.
 					the current total wins for player and computer.
 					Return updated win totals as output.
 */
-const container = document.querySelector("#container");
-const scoreboard = document.createElement("scoreboard");
-const resultMessage = document.createElement("div");
-resultMessage.classList.add("resultMessage");
-
 function playRound () {
 	// Computer picks rock, paper, or scissors RANDOMLY
 	let weaponsChest = ["rock", "paper", "scissors"];
@@ -23,52 +18,49 @@ function playRound () {
 
   if (this.id === "rock") {
     if (computerWeaponChoice === "rock") {
-			
-			return;
+
     }
     else if (computerWeaponChoice === "paper") {
 			computerWinTotal++;
-      
-			return computerWinTotal;
+			computerScore.textContent = computerWinTotal;
     }
     else {
 			playerWinTotal++;
-      
-			return playerWinTotal;
+      playerScore.textContent = playerWinTotal;
     }
   }
   else if (this.id === "paper") {
     if (computerWeaponChoice === "rock") {
 			playerWinTotal++;
-      
-			return playerWinTotal;
+      playerScore.textContent = playerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
       
-			return;
     }
     else {
 			computerWinTotal++;
-      
-			return computerWinTotal;
+      computerScore.textContent = computerWinTotal;
     }
   }
   else {
     if (computerWeaponChoice === "rock") {
 			computerWinTotal++;
-      
-			return computerWinTotal;
+      computerScore.textContent = computerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
 			playerWinTotal++;
-      
-			return playerWinTotal;
+      playerScore.textContent = playerWinTotal;
     }
     else {
-      
-			return;
+
     }
   }
+	if (playerWinTotal > 4) {
+		alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU WIN! Minstrels will write songs of praise to honor your glorious conquest.`)
+	}
+	if (computerWinTotal > 4) {
+		alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU LOSE! YOU WERE SUPPOSED TO BE THE CHOSEN ONE!`)
+	}
 }
 
 /*
@@ -103,19 +95,39 @@ Steps:		Prompt the user for their weapon of choice. R, P, S?
 	console.log(this.id);
 }*/
 
+function game() {
+
+}
+
 let playerWinTotal = 0;
 let computerWinTotal = 0;
-let round = 1;
+let keepGoing = true;
+
+const container = document.querySelector("#container");
+const scoreboard = document.createElement("div");
+scoreboard.classList.add("scoreboard");
+const player = document.createElement("div");
+player.classList.add("combatant");
+const computer = document.createElement("div");
+computer.classList.add("combatant");
+const resultMessage = document.createElement("div");
+resultMessage.classList.add("resultMessage");
+
+const playerName = document.createElement("div");
+const playerScore = document.createElement("div");
+const computerName = document.createElement("div");
+const computerScore = document.createElement("div");
+player.appendChild(playerName);
+player.appendChild(playerScore);
+computer.appendChild(computerName);
+computer.appendChild(computerScore);
+playerName.textContent = "YOU";
+computerName.textContent = "CPU";
+playerScore.textContent = playerWinTotal;
+computerScore.textContent = computerWinTotal;
+scoreboard.appendChild(player);
+scoreboard.appendChild(computer);
+container.appendChild(scoreboard);
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach (button => button.addEventListener("click", playRound));
-
-/*if (playerWinTotal > 4) {
-	alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU WIN! Minstrels will write songs of praise to honor your glorious conquest.`)
-} 
-else if (playerWinTotal === computerWinTotal) {
-	alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, you tie. So close, too!`)
-} 
-else {
-	alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU LOSE! YOU WERE SUPPOSED TO BE THE CHOSEN ONE!`)
-}*/
