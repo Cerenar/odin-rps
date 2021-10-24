@@ -18,48 +18,54 @@ function playRound () {
 
   if (this.id === "rock") {
     if (computerWeaponChoice === "rock") {
-
+			resultMessage.textContent = "That was a tie! You both picked rock. Find a nice canyon to spend some time together in.";
     }
     else if (computerWeaponChoice === "paper") {
 			computerWinTotal++;
+			resultMessage.textContent = "You lose! Rocks are actually pretty claustrophobic...";
 			computerScore.textContent = computerWinTotal;
     }
     else {
 			playerWinTotal++;
+			resultMessage.textContent = "You win! Smash those scissors to bits!";
       playerScore.textContent = playerWinTotal;
     }
   }
   else if (this.id === "paper") {
     if (computerWeaponChoice === "rock") {
 			playerWinTotal++;
+			resultMessage.textContent = "You win! Smother the life out of that pebble!";
       playerScore.textContent = playerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
-      
+      resultMessage.textContent = "That was a tie! You both picked paper. Find a nice manila folder to spend some time with your new friend in.";
     }
     else {
 			computerWinTotal++;
+			resultMessage.textContent = "You lose! I'm afraid you're getting cut to ribbons...";
       computerScore.textContent = computerWinTotal;
     }
   }
   else {
     if (computerWeaponChoice === "rock") {
 			computerWinTotal++;
+			resultMessage.textContent = "You lose! Lmao you got rocked, kid.";
       computerScore.textContent = computerWinTotal;
     }
     else if (computerWeaponChoice === "paper") {
 			playerWinTotal++;
+			resultMessage.textContent = "You win! Just think of all the pretty paper snowflakes you can make.";
       playerScore.textContent = playerWinTotal;
     }
     else {
-
+			resultMessage.textContent = "That was a tie! You both picked scissors. Uhhhhh this might get a bit NSFW.";
     }
   }
 	if (playerWinTotal > 4) {
-		alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU WIN! Minstrels will write songs of praise to honor your glorious conquest.`)
+		resultMessage.textContent = `YOU WIN! Minstrels will write songs of praise to honor your glorious conquest.`;
 	}
 	if (computerWinTotal > 4) {
-		alert (`With a score of ${ playerWinTotal } to ${ computerWinTotal }, YOU LOSE! YOU WERE SUPPOSED TO BE THE CHOSEN ONE!`)
+		resultMessage.textContent = `YOU LOSE! YOU WERE SUPPOSED TO BE THE CHOSEN ONE!`;
 	}
 }
 
@@ -95,10 +101,6 @@ Steps:		Prompt the user for their weapon of choice. R, P, S?
 	console.log(this.id);
 }*/
 
-function game() {
-
-}
-
 let playerWinTotal = 0;
 let computerWinTotal = 0;
 let keepGoing = true;
@@ -106,6 +108,8 @@ let keepGoing = true;
 const container = document.querySelector("#container");
 const scoreboard = document.createElement("div");
 scoreboard.classList.add("scoreboard");
+const combatants = document.createElement("combatants");
+combatants.classList.add("combatants");
 const player = document.createElement("div");
 player.classList.add("combatant");
 const computer = document.createElement("div");
@@ -125,8 +129,10 @@ playerName.textContent = "YOU";
 computerName.textContent = "CPU";
 playerScore.textContent = playerWinTotal;
 computerScore.textContent = computerWinTotal;
-scoreboard.appendChild(player);
-scoreboard.appendChild(computer);
+combatants.appendChild(player);
+combatants.appendChild(computer);
+scoreboard.appendChild(combatants);
+scoreboard.appendChild(resultMessage);
 container.appendChild(scoreboard);
 
 const buttons = document.querySelectorAll("button");
