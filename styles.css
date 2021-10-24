@@ -22,7 +22,19 @@ button {
 
 button:hover {
 	background-color: #3bb494;
-	scale: 1.1;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+	cursor: pointer;
+}
+
+button:active {
+	background-color: #31997d;
+	-webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
 	cursor: pointer;
 }
 
